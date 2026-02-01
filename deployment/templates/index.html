@@ -1,1 +1,106 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Customer Churn Predictor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background: #34537d;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .card {
+            background: rgb(109, 163, 188);
+            padding: 30px;
+            border-radius: 15px;
+            width: 400px;
+            box-shadow: 0px 10px 20px rgba(0,0,0,0.2);
+        }
+        input, select, button {
+            width: 100%;
+            margin: 10px 0;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #dbdedf;
+            font-size: 16px;
+        }
+        button {
+            background: #2b5878;
+            color: white;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        button:hover {
+            background: #45a049;
+        }
+        h2 {
+            text-align: center;
+            color: #333;
+        }
+        p.welcome {
+            text-align: center;
+            font-size: 18px;
+            color: #555;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+<div class="card">
+    <h2>Welcome to Churn Predictor!</h2>
+    <p class="welcome">Enter your customer details here</p>
 
+    <form action="{{ url_for('predict') }}" method="post">
+        <!-- Contract -->
+        <label>Contract Type:</label>
+        <select name="Contract" required>
+            <option value="0">Month-to-Month</option>
+            <option value="1">One Year</option>
+            <option value="2">Two Year</option>
+        </select>
+
+        <!-- Payment Method -->
+        <label>Payment Method:</label>
+        <select name="PaymentMethod" required>
+           <option value="0">Electronic Check</option>
+           <option value="1">Bank Transfer</option>
+           <option value="2">Credit Card</option>
+        </select>
+
+        <!-- Paperless Billing -->
+        <label>Paperless Billing:</label>
+            <select name="PaperlessBilling" required>
+             <option value="0">No</option>
+             <option value="1">Yes</option>
+            </select>
+
+        <!-- Senior Citizen -->
+        <label>Senior Citizen:</label>
+            <select name="SeniorCitizen" required>
+                <option value="0">No</option>
+                <option value="1">Yes</option>
+            </select>
+
+
+        <!-- Numeric inputs -->
+        <label>Tenure (months):</label>
+        <input type="number" step="any" name="Tenure" required>
+
+        <!--Monthly Charges Input-->
+        <label>Monthly Charges:</label>
+        <input type="number" step="any" name="MonthlyCharges" required>
+
+        <!--Total Charges Input-->
+        <label>Total Charges:</label>
+        <input type="number" step="any" name="TotalCharges" required>
+
+        <button type="submit">Predict</button>
+    </form>
+</div>
+</body>
+</html>
